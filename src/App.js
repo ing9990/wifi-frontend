@@ -6,8 +6,15 @@ import ListPage from "./components/ListPage";
 function App() {
     return (
         <div>
-            <FormPage/>
-            <ListPage/>
+            <div className="formPage">
+                <FormPage/>
+            </div>
+
+            <hr/>
+
+            <div className="listPage">
+                <ListPage/>
+            </div>
         </div>
     );
 }

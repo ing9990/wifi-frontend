@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
+
 const ListPage = () => {
 
     const [data, setData] = useState([{
@@ -10,18 +11,22 @@ const ListPage = () => {
         "wifi_address": ""
     }])
 
-    function handleOnclick(){
-        {axios.get("http://localhost:8080")
-            .then((res) =>{
-                setData(res.data)
-                console.log(data)
-            })}
-    }
+    useEffect(() => {
+        return () => {
+            {axios.get("http://localhost:8080/api/wifi")
+                .then((res) =>{
+                    setData(res.data)
+                })}
+        };
+    }, data);
+
 
 
     return (
         <div>
-            <button onClick={handleOnclick}>Click Here</button>
+            {data.map((datas) =>{
+                return <li className="libox">  {datas.wifi_name} | {datas.wifi_password} | {datas.wifi_address}</li>
+            })}
         </div>
     );
 };
